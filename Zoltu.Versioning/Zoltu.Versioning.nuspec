@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<authors>$author$</authors>
+		<description>$description$</description>
+		<language>en-US</language>
+		<projectUrl>https://github.com/Zoltu/Zoltu.Versioning</projectUrl>
+		<licenseUrl>https://github.com/Zoltu/Zoltu.Versioning/blob/master/LICENSE</licenseUrl>
+	</metadata>
+	<files>
+		<file src="Zoltu.Versioning.targets" target="build" />
+		<file src="**\*" target="build" exclude="*.targets;*.nupkg;**\*.pdb;CodeContracts\*" />
+	</files>
+</package>

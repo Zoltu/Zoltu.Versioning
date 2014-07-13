@@ -1,0 +1,7 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask TaskName="Zoltu.Versioning.Git" AssemblyFile="$(MSBuildThisFileDirectory)Zoltu.Versioning.dll" />
+
+	<Target Name="GenerateVersionFileFromGit" BeforeTargets="BeforeBuild">
+		<Zoltu.Versioning.Git OutputFilePath="$(ProjectDir)Properties\VersionAssemblyInfo.cs" />
+	</Target>
+</Project>
