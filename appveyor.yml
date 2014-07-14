@@ -10,7 +10,7 @@ configuration:
   - Release
 
 before_build:
-  - cmd nuget restore
+  - cmd: nuget restore
 
 deploy:
   provider: NuGet
