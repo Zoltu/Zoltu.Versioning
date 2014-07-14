@@ -122,12 +122,18 @@
   <ItemGroup>
     <Compile Include="Git.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tag.cs" />
+    <Compile Include="Tags.cs" />
+    <Compile Include="VersionTag.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Zoltu.Versioning.nuspec" />
+    <None Include="Zoltu.Versioning.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Zoltu.Versioning.targets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Nuget.targets" />
   </ItemGroup>
