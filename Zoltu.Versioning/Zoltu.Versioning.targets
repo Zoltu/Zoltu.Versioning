@@ -4,4 +4,8 @@
 	<Target Name="GenerateVersionFileFromGit" BeforeTargets="BeforeBuild">
 		<Zoltu.Versioning.GitTask OutputFilePath="$(ProjectDir)Properties\VersionAssemblyInfo.cs" />
 	</Target>
+
+	<ItemGroup>
+		<Compile Include="Properties\VersionAssemblyInfo.cs" />
+	</ItemGroup>
 </Project>
