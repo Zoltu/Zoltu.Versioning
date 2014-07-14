@@ -9,8 +9,15 @@ platform:
 configuration:
   - Release
 
+verbosity: minimal
+
 before_build:
   - cmd: nuget restore
+
+artifacts:
+  - path: **/*.nupkg
+  - path: **/*.dll
+  - path: **/*.pdb
 
 deploy:
   provider: NuGet
