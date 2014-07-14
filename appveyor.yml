@@ -15,9 +15,9 @@ before_build:
   - cmd: nuget restore
 
 artifacts:
-  - path: Zoltu.Versioning/**/*.nupkg
-  - path: Zoltu.Versioning/**/*.dll
-  - path: Zoltu.Versioning/**/*.pdb
+  - path: ./**/*.nupkg
+  - path: ./**/*.dll
+  - path: ./**/*.pdb
 
 deploy:
   provider: NuGet
