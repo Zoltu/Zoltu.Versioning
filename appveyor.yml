@@ -1,4 +1,4 @@
-version: {build}
+version: "{build}"
 
 assembly_info:
   patch: false
