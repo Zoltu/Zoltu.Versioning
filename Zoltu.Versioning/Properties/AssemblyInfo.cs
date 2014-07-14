@@ -18,3 +18,5 @@ When you want to change the major.minor version, just tag a commit with ""v#.#""
 [assembly: AssemblyCompany("Zoltu")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyCulture("")]
+[assembly: AssemblyVersion("1.0.22.0")]
+[assembly: AssemblyFileVersion("1.0.22.0")]
