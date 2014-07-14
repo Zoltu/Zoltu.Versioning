@@ -9,9 +9,9 @@
 [assembly: AssemblyDescription(
 @"A NuGet package for automatically versioning builds via the Git repository they are sitting in.
 
-To use, simply tag your releases with ""v#.#"".  The patch version (third number) will calculated by counting the number of commits since the most recent tag matching that format.
+Usage: Tag your releases with ""v#.#"".
 
-When you want to change the major.minor version, just tag a commit with ""v#.#""(e.g., v1.15) and builds of that commit will be numbered v#.#.[commits since tag].0 (e.g., v1.15.0.0 for the build of the commit that is tagged, v1.15.1.0 for the build of the next commit, etc.)")]
+Additional Details: https://github.com/Zoltu/Zoltu.Versioning/blob/master/README.md")]
 
 [assembly: AssemblyTitle("Automatic Git Versioning")]
 [assembly: AssemblyProduct("Zoltu.Versioning")]
