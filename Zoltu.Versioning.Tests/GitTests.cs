@@ -16,7 +16,7 @@ using System.Reflection;
 ";
 
 			// ACT
-			var actualContents = Git.GenerateVersionFileContents("1.2.3.4");
+			var actualContents = GitVersion.GenerateVersionFileContents("1.2.3.4");
 
 			// ASSERT
 			Assert.Equal(expectedContents, actualContents);

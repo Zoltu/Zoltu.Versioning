@@ -1,35 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.IO;
 using System.Linq;
 using System.Text;
-using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 
 namespace Zoltu.Versioning
 {
-	public class Git : Task
+	public static class GitVersion
 	{
-		[Required]
-		public String OutputFilePath { get; set; }
-
-		public override Boolean Execute()
-		{
-			Contract.Assume(Log != null);
-
-			var repositorySearchPathStart = Path.GetDirectoryName(OutputFilePath);
-			var repositoryPath = LibGit2Sharp.Repository.Discover(repositorySearchPathStart);
-			using (var repository = new LibGit2Sharp.Repository(repositoryPath))
-			{
-				var version = GetVersionFromGit(repository);
-				var fileContents = GenerateVersionFileContents(version);
-				File.WriteAllText(OutputFilePath, fileContents);
-			}
-
-			return true;
-		}
-
 		public static String GetVersionFromGit(LibGit2Sharp.IRepository repository)
 		{
 			var tags = new Tags(repository);
