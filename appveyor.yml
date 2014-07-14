@@ -13,12 +13,9 @@ before_build:
   - cmd nuget restore
 
 artifacts:
-  - path: *.nupkg
-    name: NuGet Package
-  - path: *.dll
-    name: Assemblies
-  - path: *.pdb
-    name: PDBs
+  - path: **/*.nupkg
+  - path: **/*.dll
+  - path: **/*.pdb
 
 deploy:
   provider: NuGet
