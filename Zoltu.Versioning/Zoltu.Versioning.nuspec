@@ -8,6 +8,7 @@
 		<language>en-US</language>
 		<projectUrl>https://github.com/Zoltu/Zoltu.Versioning</projectUrl>
 		<licenseUrl>https://github.com/Zoltu/Zoltu.Versioning/blob/master/LICENSE</licenseUrl>
+		<developmentDependency>true</developmentDependency>
 	</metadata>
 	<files>
 		<file src="Zoltu.Versioning.targets" target="build" />
