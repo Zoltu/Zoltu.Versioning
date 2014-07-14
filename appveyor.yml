@@ -1,9 +1,27 @@
+version: {build}
+
+assembly_info:
+  patch: false
+
+platform:
+  - AnyCPU
+
+configuration:
+  - Release
+
+before_build:
+  - cmd nuget restore
+
 artifacts:
   - path: *.nupkg
     name: NuGet Package
-
   - path: *.dll
     name: Assemblies
-
   - path: *.pdb
     name: PDBs
+
+deploy:
+  provider: NuGet
+  api_key:
+    secure: X6YnwwH05dy0122NypnAz4w1ti39JQ49I8bQqDsLHzUwAp1rhvm6yvPo03EpwD8e
+
