@@ -8,6 +8,7 @@
 		<language>en-US</language>
 		<projectUrl>https://github.com/Zoltu/Zoltu.Versioning</projectUrl>
 		<licenseUrl>https://github.com/Zoltu/Zoltu.Versioning/blob/master/LICENSE</licenseUrl>
+		<tags>git version versioning versions semantic semver</tags>
 		<developmentDependency>true</developmentDependency>
 	</metadata>
 	<files>
