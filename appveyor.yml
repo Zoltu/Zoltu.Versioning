@@ -16,6 +16,8 @@ before_build:
 
 artifacts:
   - path: Zoltu.Versioning/**/*.nupkg
+  - path: Zoltu.Versioning/**/*.dll
+  - path: Zoltu.Versioning/**/*.pdb
 
 deploy:
   provider: NuGet
