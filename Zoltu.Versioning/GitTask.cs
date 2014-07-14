@@ -17,7 +17,10 @@ namespace Zoltu.Versioning
 
 			var repositorySearchPathStart = Path.GetDirectoryName(OutputFilePath);
 			var repositoryPath = LibGit2Sharp.Repository.Discover(repositorySearchPathStart);
-			using (var repository = new LibGit2Sharp.Repository(repositoryPath))
+			var repository = (repositoryPath != null)
+				? new LibGit2Sharp.Repository(repositoryPath)
+				: null;
+			using (repository)
 			{
 				var version = GitVersion.GetVersionFromGit(repository);
 				var fileContents = GitVersion.GenerateVersionFileContents(version);
