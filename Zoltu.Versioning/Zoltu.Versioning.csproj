@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
-    <NuGetPackageImportStamp>b0c49a03</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>be019d01</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -123,6 +123,7 @@
     <Compile Include="GitTask.cs" />
     <Compile Include="GitVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\VersionAssemblyInfo.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="Tags.cs" />
     <Compile Include="VersionTag.cs" />
@@ -154,5 +155,7 @@ xcopy /s /y /d "$(SolutionDir)packages\LibGit2Sharp.0.18.1.0\lib\net40\NativeBin
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NuGet.for.MSBuild.1.4.2\build\NuGet.for.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.for.MSBuild.1.4.2\build\NuGet.for.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\Zoltu.Versioning.1.0.0.0\build\Zoltu.Versioning.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Zoltu.Versioning.1.0.0.0\build\Zoltu.Versioning.targets'))" />
   </Target>
+  <Import Project="..\packages\Zoltu.Versioning.1.0.0.0\build\Zoltu.Versioning.targets" Condition="Exists('..\packages\Zoltu.Versioning.1.0.0.0\build\Zoltu.Versioning.targets')" />
 </Project>
