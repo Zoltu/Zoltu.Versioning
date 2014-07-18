@@ -80,7 +80,7 @@ namespace Zoltu.Versioning
 				return new List<LibGit2Sharp.Commit>();
 
 			var commits = head.Commits;
-			if (head == null)
+			if (commits == null)
 				return new List<LibGit2Sharp.Commit>();
 
 			return commits;
