@@ -125,6 +125,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="Tags.cs" />
+    <Compile Include="Version.cs" />
     <Compile Include="VersionTag.cs" />
   </ItemGroup>
   <ItemGroup>
