@@ -10,6 +10,8 @@ namespace Zoltu.Versioning
 	{
 		public static Version GetVersionFromGit(LibGit2Sharp.IRepository repository)
 		{
+			Contract.Ensures(Contract.Result<Version>() != null);
+
 			var tags = new Tags(repository);
 			var commits = GetHeadCommitsFromRepository(repository);
 
@@ -22,6 +24,12 @@ namespace Zoltu.Versioning
 			var minorVersion = (versionTag != null)
 				? Int32.Parse(versionTag.MinorVersion)
 				: 0;
+
+			if (majorVersion < 0)
+				throw new ArgumentOutOfRangeException("Major version number found in tag was less than 0.  " + majorVersion);
+
+			if (minorVersion < 0)
+				throw new ArgumentOutOfRangeException("Minor version number found in tag was less than 0.  " + minorVersion);
 
 			return new Version(majorVersion, minorVersion, commitCount, 0);
 		}
