@@ -69,13 +69,13 @@ namespace Zoltu.Versioning
 			Contract.Requires(fileVersion != null);
 			Contract.Ensures(Contract.Result<String>() != null);
 
-			var builder = new StringBuilder();
-			builder.AppendLine(@"// This is a generated file.  Do not commit it to version control and do not modify it.");
-			builder.AppendLine(@"using System.Reflection;");
-			builder.AppendFormat(@"[assembly: AssemblyVersion(""{0}"")]{1}", assemblyVersion, Environment.NewLine);
-			builder.AppendFormat(@"[assembly: AssemblyFileVersion(""{0}"")]{1}", fileVersion, Environment.NewLine);
-			builder.AppendFormat(@"[assembly: AssemblyInformationalVersion(""{0}"")]{1}", assemblyInformationalVersion, Environment.NewLine);
-			return builder.ToString();
+			return new StringBuilder()
+				.AppendLine(@"// This is a generated file.  Do not commit it to version control and do not modify it.")
+				.AppendLine(@"using System.Reflection;")
+				.AppendFormat(@"[assembly: AssemblyVersion(""{0}"")]{1}", assemblyVersion, Environment.NewLine)
+				.AppendFormat(@"[assembly: AssemblyFileVersion(""{0}"")]{1}", fileVersion, Environment.NewLine)
+				.AppendFormat(@"[assembly: AssemblyInformationalVersion(""{0}"")]{1}", assemblyInformationalVersion, Environment.NewLine)
+				.ToString();
 		}
 
 		private static IEnumerable<LibGit2Sharp.Commit> GetHeadCommitsFromRepository(LibGit2Sharp.IRepository repository)
