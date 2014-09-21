@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace Zoltu.Versioning.Tests
 {
@@ -8,13 +9,15 @@ namespace Zoltu.Versioning.Tests
 		public void when_version_supplied()
 		{
 			// ARRANGE
-			const string expectedContents =
+			var expectedContents =
 @"// This is a generated file.  Do not commit it to version control and do not modify it.
 using System.Reflection;
 [assembly: AssemblyVersion(""1.2.3.4"")]
 [assembly: AssemblyFileVersion(""5.6.7.8"")]
 [assembly: AssemblyInformationalVersion(""9.10.11.12"")]
-";
+".Replace("\r\n", "\n")
+ .Replace("\n", Environment.NewLine);
+
 			var version = new Version(1, 2, 3, 4);
 			var fileVersion = new Version(5, 6, 7, 8);
 			var infoVersion = new Version(9, 10, 11, 12);
