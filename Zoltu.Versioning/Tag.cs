@@ -52,7 +52,7 @@ namespace Zoltu.Versioning
 			return new Tag(name, sha);
 		}
 
-		protected Tag(String name, String sha)
+		public Tag(String name, String sha)
 		{
 			Contract.Requires(name != null);
 			Contract.Requires(sha != null);

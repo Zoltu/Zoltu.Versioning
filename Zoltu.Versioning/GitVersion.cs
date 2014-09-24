@@ -19,19 +19,13 @@ namespace Zoltu.Versioning
 			var commitCount = GetCommitCountSinceTag(commits, versionTag);
 
 			var majorVersion = (versionTag != null)
-				? Int32.Parse(versionTag.MajorVersion)
+				? versionTag.MajorVersion
 				: 0;
 			var minorVersion = (versionTag != null)
-				? Int32.Parse(versionTag.MinorVersion)
+				? versionTag.MinorVersion
 				: 0;
 
-			if (majorVersion < 0)
-				throw new ArgumentOutOfRangeException("Major version number found in tag was less than 0.  " + majorVersion);
-
-			if (minorVersion < 0)
-				throw new ArgumentOutOfRangeException("Minor version number found in tag was less than 0.  " + minorVersion);
-
-			return new Version(majorVersion, minorVersion, commitCount, 0);
+			return new Version(majorVersion, minorVersion, commitCount, 0, versionTag.Suffix);
 		}
 
 		public static Int32 GetCommitCountSinceTag(IEnumerable<LibGit2Sharp.Commit> commits, VersionTag versionTag)

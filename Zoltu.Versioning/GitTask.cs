@@ -29,7 +29,7 @@ namespace Zoltu.Versioning
 			using (repository)
 			{
 				var version = GitVersion.GetVersionFromGit(repository);
-				var majorAndMinorOnly = new Version(version.Major, version.Minor, 0, 0);
+				var majorAndMinorOnly = new Version(version.Major, version.Minor, 0, 0, version.Suffix);
 
 				var assemblyVersion = (OnlyMajorAndMinorInAssemblyVersion)
 					? majorAndMinorOnly

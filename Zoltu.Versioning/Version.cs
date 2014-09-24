@@ -13,6 +13,7 @@ namespace Zoltu.Versioning
 		public readonly Int32 Minor;
 		public readonly Int32 Patch;
 		public readonly Int32 Build;
+		public readonly String Suffix;
 
 		[ContractInvariantMethod]
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Required for code contracts.")]
@@ -25,7 +26,7 @@ namespace Zoltu.Versioning
 		}
 
 
-		public Version(Int32 major, Int32 minor, Int32 patch, Int32 build)
+		public Version(Int32 major, Int32 minor, Int32 patch, Int32 build, String suffix = null)
 		{
 			Contract.Requires(major >= 0);
 			Contract.Requires(minor >= 0);
@@ -36,11 +37,15 @@ namespace Zoltu.Versioning
 			Minor = minor;
 			Patch = patch;
 			Build = build;
+			Suffix = suffix;
 		}
 
 		public override string ToString()
 		{
-			return String.Format(@"{0}.{1}.{2}.{3}", Major, Minor, Patch, Build);
+			var suffix = (Suffix != null)
+				? "-" + Suffix
+				: String.Empty;
+			return String.Format(@"{0}.{1}.{2}.{3}{4}", Major, Minor, Patch, Build, suffix);
 		}
 	}
 }
