@@ -80,10 +80,12 @@ namespace Zoltu.Versioning
 
 		private static Int32 GetVersionFromMatch(Match match, String groupName)
 		{
+			Contract.Requires(match != null);
+			Contract.Requires(groupName != null);
 			Contract.Ensures(Contract.Result<Int32>() >= 0);
 
 			var valueGroup = match.Groups[groupName];
-			if (!valueGroup.Success)
+			if (valueGroup == null || !valueGroup.Success)
 				throw new Exception(String.Format("Expected match {0} but did not find one.", groupName));
 			
 			var valueString = valueGroup.Value;
@@ -99,8 +101,10 @@ namespace Zoltu.Versioning
 
 		private static String TryGetSuffixFromMatch(Match match)
 		{
+			Contract.Requires(match != null);
+
 			var valueGroup = match.Groups["Suffix"];
-			if (!valueGroup.Success)
+			if (valueGroup == null || !valueGroup.Success)
 				return null;
 
 			return valueGroup.Value;
