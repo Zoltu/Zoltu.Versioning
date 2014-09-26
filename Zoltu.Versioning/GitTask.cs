@@ -29,14 +29,16 @@ namespace Zoltu.Versioning
 			using (repository)
 			{
 				var version = GitVersion.GetVersionFromGit(repository);
+				var versionNoSuffix = new Version(version.Major, version.Minor, version.patch, 0, null);
 				var majorAndMinorOnly = new Version(version.Major, version.Minor, 0, 0, version.Suffix);
+				var majorAndMinorOnlyNoSuffix = new Version(version.Major, version.Minor, 0, 0, null);
 
 				var assemblyVersion = (OnlyMajorAndMinorInAssemblyVersion)
-					? majorAndMinorOnly
-					: version;
+					? majorAndMinorOnlyNoSuffix
+					: versionNoSuffix;
 				var assemblyFileVersion = (OnlyMajorAndMinorInAssemblyFileVersion)
-					? majorAndMinorOnly
-					: version;
+					? majorAndMinorOnlyNoSuffix
+					: versionNoSuffix;
 				var assemblyInformationalVersion = (OnlyMajorAndMinorInAssemblyInformationalVersion)
 					? majorAndMinorOnly
 					: version;
