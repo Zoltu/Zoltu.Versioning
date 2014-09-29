@@ -16,7 +16,7 @@ The versioning system is simple, and designed to follow semantic versioning for 
 
 The first step to figuring out the version is getting the git repository.  This is done by traversing the directory tree until a valid .git folder is found.  If none is found then the version is 0.0.0.0.
 
-The second step is to walk the commit history from HEAD to the first commit, looking for a tag with a name that matches v#.# (the actual regex is `^v(\d+).(\d+)(?:-(.+))?$`).  If such a tag is found, then the number of commits traversed are counted to generate the patch version and the major and minor versions are parsed from the tag.
+The second step is to walk the commit history from HEAD to the first commit, looking for a tag with a name that matches v#.# (the actual regex is `^v(\d+).(\d+)$`). If such a tag is found, then the number of commits traversed are counted to generate the patch version and the major and minor versions are parsed from the tag.
 
 ## Example
 
