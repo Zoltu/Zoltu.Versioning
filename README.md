@@ -37,7 +37,7 @@ It is possible to instruct the versioning system to output only a version consit
 When the first is set to `true` in the above example the output attributes will be as shown below.
 
 ``` xml
-PropertyGroup>
+<PropertyGroup>
     <GitVersionOnlyMajorAndMinorInAssemblyVersion>
         true
     </GitVersionOnlyMajorAndMinorInAssemblyVersion>
