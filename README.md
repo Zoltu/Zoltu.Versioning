@@ -55,3 +55,12 @@ When the first is set to `true` in the above example the output attributes will 
 As of version 1.1.23 it is possible to extend the tag with a suffix, which will be appended to the `AssemblyInformationalVersion` attribute. For example a tag `v3.5-RC05` the informational version will be 3.5.0.0-RC05. When you push 10 commits it will be 3.5.10.0-RC05.
 
 This is useful when producing NuGet prerelase packages from project or when the nuspec is updated from assembly metadata.
+
+### NCrunch Integration
+
+NCrunch builds will start failing after adding this project to your solution due to being unable to find LibGit2Sharp libraries `System.IO.FileNotFoundException: Could not load file or assembly 'LibGit2Sharp, Version=0.18.1.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies. The system cannot find the file specified.`
+To work around this, add the following to your .ncrunchproject file:
+
+``` xml
+<AdditionalFilesToInclude>..\packages\Zoltu.Versioning.*\build\**.*</AdditionalFilesToInclude>
+```
