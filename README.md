@@ -2,6 +2,9 @@
 
 NuGet package for automatically versioning a project with git.
 
+[![Build status](http://img.shields.io/appveyor/ci/Zoltu/zoltu-versioning.svg)](https://ci.appveyor.com/project/Zoltu/zoltu-versioning)
+[![NuGet Status](http://img.shields.io/nuget/v/Zoltu.Versioning.svg)](https://www.nuget.org/packages/Zoltu.Versioning/)
+
 ## Usage
 
  * Install the NuGet package (https://www.nuget.org/packages/Zoltu.Versioning/).
