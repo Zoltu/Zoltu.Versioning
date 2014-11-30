@@ -18,17 +18,7 @@ namespace Zoltu.Versioning
 			var versionTag = TryGetVersionTagFromCommits(commits, tags);
 			var commitCount = GetCommitCountSinceTag(commits, versionTag);
 
-			var majorVersion = (versionTag != null)
-				? versionTag.MajorVersion
-				: 0;
-			var minorVersion = (versionTag != null)
-				? versionTag.MinorVersion
-				: 0;
-			var suffix = (versionTag != null)
-				? versionTag.Suffix
-				: null;
-
-			return new Version(majorVersion, minorVersion, commitCount, 0, suffix);
+			return Version.CreateVersion(versionTag, commitCount);
 		}
 
 		public static Int32 GetCommitCountSinceTag(IEnumerable<LibGit2Sharp.Commit> commits, VersionTag versionTag)

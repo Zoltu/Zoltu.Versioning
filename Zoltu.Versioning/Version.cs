@@ -25,6 +25,23 @@ namespace Zoltu.Versioning
 			Contract.Invariant(Build >= 0);
 		}
 
+		public static Version CreateVersion(VersionTag versionTag, Int32 commitCount)
+		{
+			Contract.Requires(commitCount >= 0);
+			Contract.Ensures(Contract.Result<Version>() != null);
+
+			if (versionTag == null)
+				return new Version(0, 0, commitCount, 0, null);
+
+			var suffix = (versionTag.Suffix != null)
+				? versionTag.Suffix + "-" + commitCount.ToString("D4")
+				: null;
+			var patchVersion = commitCount;
+			var minorVersion = versionTag.MinorVersion;
+			var majorVersion = versionTag.MajorVersion;
+
+			return new Version(majorVersion, minorVersion, patchVersion, 0, suffix);
+		}
 
 		public Version(Int32 major, Int32 minor, Int32 patch, Int32 build, String suffix = null)
 		{

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="GitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Version.cs" />
     <Compile Include="VersionTag.cs" />
   </ItemGroup>
   <ItemGroup>
