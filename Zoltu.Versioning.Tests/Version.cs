@@ -14,7 +14,7 @@ namespace Zoltu.Versioning.Tests
 			var tag = new Tag(tagName, "");
 
 			// act
-			var versionTag = VersionTag.TryCreateVersionTag(tag);
+			var versionTag = VersionTag.TryCreate(tag);
 			var actualVersion = Version.CreateVersion(versionTag, commitCount);
 
 			// assert

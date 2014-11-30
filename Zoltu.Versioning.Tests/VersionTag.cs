@@ -26,7 +26,7 @@ namespace Zoltu.Versioning.Tests
 			var tag = new Tag(tagName, "");
 
 			// act
-			var versionTag = VersionTag.TryCreateVersionTag(tag);
+			var versionTag = VersionTag.TryCreate(tag);
 
 			// assert
 			Assert.Null(versionTag);
@@ -43,7 +43,7 @@ namespace Zoltu.Versioning.Tests
 			var tag = new Tag(tagName, "");
 
 			// act
-			var versionTag = VersionTag.TryCreateVersionTag(tag);
+			var versionTag = VersionTag.TryCreate(tag);
 
 			// assert
 			Assert.Equal(majorVersion, versionTag.MajorVersion);

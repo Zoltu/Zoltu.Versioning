@@ -45,7 +45,7 @@ namespace Zoltu.Versioning
 
 			return commits
 				.Select(tags.TryGet)
-				.Select(VersionTag.TryCreateVersionTag)
+				.Select(VersionTag.TryCreate)
 				.Where(versionTag => versionTag != null)
 				.FirstOrDefault();
 		}
