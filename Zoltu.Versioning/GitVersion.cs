@@ -50,17 +50,37 @@ namespace Zoltu.Versioning
 				.FirstOrDefault();
 		}
 
-		public static String GenerateVersionFileContents(Version assemblyVersion, Version fileVersion, Version assemblyInformationalVersion)
+		public static String GenerateVersionFileContents(LibGit2Sharp.IRepository repository, Boolean onlyMajorAndMinorInAssemblyVersion, Boolean onlyMajorAndMinorInAssemblyFileVersion, Boolean onlyMajorAndMinorInAssemblyInformationalVersion)
+		{
+			var version = GitVersion.GetVersionFromGit(repository);
+			var versionNoSuffix = new Version(version.Major, version.Minor, version.Patch, 0, null);
+			var majorAndMinorOnly = new Version(version.Major, version.Minor, 0, 0, version.Suffix);
+			var majorAndMinorOnlyNoSuffix = new Version(version.Major, version.Minor, 0, 0, null);
+
+			var assemblyVersion = (onlyMajorAndMinorInAssemblyVersion)
+				? majorAndMinorOnlyNoSuffix
+				: versionNoSuffix;
+			var assemblyFileVersion = (onlyMajorAndMinorInAssemblyFileVersion)
+				? majorAndMinorOnlyNoSuffix
+				: versionNoSuffix;
+			var assemblyInformationalVersion = (onlyMajorAndMinorInAssemblyInformationalVersion)
+				? majorAndMinorOnly
+				: version;
+
+			return GenerateVersionFileContents(assemblyVersion, assemblyFileVersion, assemblyInformationalVersion);
+		}
+
+		public static String GenerateVersionFileContents(Version assemblyVersion, Version assemblyFileVersion, Version assemblyInformationalVersion)
 		{
 			Contract.Requires(assemblyVersion != null);
-			Contract.Requires(fileVersion != null);
+			Contract.Requires(assemblyFileVersion != null);
 			Contract.Ensures(Contract.Result<String>() != null);
 
 			return new StringBuilder()
 				.AppendLine(@"// This is a generated file.  Do not commit it to version control and do not modify it.")
 				.AppendLine(@"using System.Reflection;")
 				.AppendFormat(@"[assembly: AssemblyVersion(""{0}"")]{1}", assemblyVersion, Environment.NewLine)
-				.AppendFormat(@"[assembly: AssemblyFileVersion(""{0}"")]{1}", fileVersion, Environment.NewLine)
+				.AppendFormat(@"[assembly: AssemblyFileVersion(""{0}"")]{1}", assemblyFileVersion, Environment.NewLine)
 				.AppendFormat(@"[assembly: AssemblyInformationalVersion(""{0}"")]{1}", assemblyInformationalVersion, Environment.NewLine)
 				.ToString();
 		}
