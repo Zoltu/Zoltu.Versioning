@@ -1,3 +1,9 @@
+branches:
+  only:
+    - master
+
+skip_tags: true
+
 version: "{build}"
 
 assembly_info:
