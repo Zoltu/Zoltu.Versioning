@@ -15,8 +15,6 @@ platform:
 configuration:
   - Release
 
-verbosity: minimal
-
 before_build:
   - cmd: nuget restore
 
