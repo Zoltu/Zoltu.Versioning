@@ -21,9 +21,11 @@ namespace Zoltu.Versioning
 			Contract.Invariant(MinorVersion >= 0);
 		}
 
-		public VersionTag(Tag tag, Int32 majorVersion, Int32 minorVersion, String suffix) : base(tag.Name, tag.Sha)
+		public VersionTag(String name, String sha, Int32 majorVersion, Int32 minorVersion, String suffix)
+			: base(name, sha)
 		{
-			Contract.Requires(tag != null);
+			Contract.Requires(name != null);
+			Contract.Requires(sha != null);
 			Contract.Requires(majorVersion >= 0);
 			Contract.Requires(minorVersion >= 0);
 
@@ -47,7 +49,7 @@ namespace Zoltu.Versioning
 				var minorVersion = GetVersionFromMatch(match, "Minor");
 				var suffix = TryGetSuffixFromMatch(match);
 
-				return new VersionTag(tag, majorVersion, minorVersion, suffix);
+				return new VersionTag(tag.Name, tag.Sha, majorVersion, minorVersion, suffix);
 			}
 			catch (Exception)
 			{
