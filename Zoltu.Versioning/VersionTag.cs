@@ -8,40 +8,17 @@ namespace Zoltu.Versioning
 	{
 		private static Regex tagMatcher = new Regex(@"^v(?<Major>\d+).(?<Minor>\d+)(?:-(?<Suffix>.+))?$", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
-		public Int32 MajorVersion
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<Int32>() >= 0);
-				return _majorVersion;
-			}
-		}
-		private readonly Int32 _majorVersion;
+		public Int32 MajorVersion { get; private set; }
 
-		public Int32 MinorVersion
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<Int32>() >= 0);
-				return _minorVersion;
-			}
-		}
-		private readonly Int32 _minorVersion;
+		public Int32 MinorVersion { get; private set; }
 
-		public String Suffix
-		{
-			get
-			{
-				return _suffix;
-			}
-		}
-		private readonly String _suffix;
+		public String Suffix { get; private set; }
 
 		[ContractInvariantMethod]
 		private void ContractInvariants()
 		{
-			Contract.Invariant(_majorVersion >= 0);
-			Contract.Invariant(_minorVersion >= 0);
+			Contract.Invariant(MajorVersion >= 0);
+			Contract.Invariant(MinorVersion >= 0);
 		}
 
 		public VersionTag(Tag tag, Int32 majorVersion, Int32 minorVersion, String suffix) : base(tag.Name, tag.Sha)
@@ -50,9 +27,9 @@ namespace Zoltu.Versioning
 			Contract.Requires(majorVersion >= 0);
 			Contract.Requires(minorVersion >= 0);
 
-			_majorVersion = majorVersion;
-			_minorVersion = minorVersion;
-			_suffix = suffix;
+			MajorVersion = majorVersion;
+			MinorVersion = minorVersion;
+			Suffix = suffix;
 		}
 
 		public static VersionTag TryCreate(Tag tag)
