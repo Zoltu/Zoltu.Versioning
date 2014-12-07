@@ -18,6 +18,10 @@ configuration:
 before_build:
   - cmd: nuget restore
 
+build:
+  project: Zoltu.Versioning.sln
+  verbosity: minimal
+
 artifacts:
   - path: Zoltu.Versioning/bin/**/*.nupkg
   - path: Zoltu.Versioning/bin/**/*.dll
