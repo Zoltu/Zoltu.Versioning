@@ -23,4 +23,5 @@
   <MSTestThreadApartmentState>STA</MSTestThreadApartmentState>
   <BuildProcessArchitecture>x86</BuildProcessArchitecture>
   <AdditionalFilesToInclude>..\packages\Zoltu.Versioning.*\build\**.*</AdditionalFilesToInclude>
+  <HiddenWarnings>PostBuildEventDisabled;CodeContractsReferenceBuildsAreEnabled</HiddenWarnings>
 </ProjectConfiguration>

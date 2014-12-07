@@ -1,96 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
+using Zoltu.Collections.Generic.NotNull;
+using Zoltu.Linq.NotNull;
 
 namespace Zoltu.Versioning
 {
 	public static class GitVersion
 	{
-		public static Version GetVersionFromGit(LibGit2Sharp.IRepository repository)
+		public static INotNullEnumerable<String> GetHeadCommitsFromRepository(LibGit2Sharp.IRepository repository)
 		{
-			Contract.Ensures(Contract.Result<Version>() != null);
-
-			var tags = new Tags(repository);
-			var commits = GetHeadCommitsFromRepository(repository);
-
-			var versionTag = TryGetVersionTagFromCommits(commits, tags);
-			var commitCount = GetCommitCountSinceTag(commits, versionTag);
-
-			var majorVersion = (versionTag != null)
-				? versionTag.MajorVersion
-				: 0;
-			var minorVersion = (versionTag != null)
-				? versionTag.MinorVersion
-				: 0;
-			var suffix = (versionTag != null)
-				? versionTag.Suffix
-				: null;
-
-			return new Version(majorVersion, minorVersion, commitCount, 0, suffix);
-		}
-
-		public static Int32 GetCommitCountSinceTag(IEnumerable<LibGit2Sharp.Commit> commits, VersionTag versionTag)
-		{
-			Contract.Requires(commits != null);
-			Contract.Ensures(Contract.Result<Int32>() >= 0);
-
-			if (versionTag == null)
-				return commits.Count();
-
-			return commits
-				.Where(commit => commit != null)
-				.TakeWhile(commit => commit.Sha != versionTag.Sha)
-				.Count();
-		}
-
-		public static VersionTag TryGetVersionTagFromCommits(IEnumerable<LibGit2Sharp.Commit> commits, Tags tags)
-		{
-			if (commits == null)
-				return null;
-
-			if (tags == null)
-				return null;
-
-			return commits
-				.Select(tags.TryGet)
-				.Select(VersionTag.TryCreateVersionTag)
-				.Where(versionTag => versionTag != null)
-				.FirstOrDefault();
-		}
-
-		public static String GenerateVersionFileContents(Version assemblyVersion, Version fileVersion, Version assemblyInformationalVersion)
-		{
-			Contract.Requires(assemblyVersion != null);
-			Contract.Requires(fileVersion != null);
-			Contract.Ensures(Contract.Result<String>() != null);
-
-			return new StringBuilder()
-				.AppendLine(@"// This is a generated file.  Do not commit it to version control and do not modify it.")
-				.AppendLine(@"using System.Reflection;")
-				.AppendFormat(@"[assembly: AssemblyVersion(""{0}"")]{1}", assemblyVersion, Environment.NewLine)
-				.AppendFormat(@"[assembly: AssemblyFileVersion(""{0}"")]{1}", fileVersion, Environment.NewLine)
-				.AppendFormat(@"[assembly: AssemblyInformationalVersion(""{0}"")]{1}", assemblyInformationalVersion, Environment.NewLine)
-				.ToString();
-		}
-
-		private static IEnumerable<LibGit2Sharp.Commit> GetHeadCommitsFromRepository(LibGit2Sharp.IRepository repository)
-		{
-			Contract.Ensures(Contract.Result<IEnumerable<LibGit2Sharp.Commit>>() != null);
+			Contract.Ensures(Contract.Result<INotNullEnumerable<String>>() != null);
 
 			if (repository == null)
-				return new List<LibGit2Sharp.Commit>();
+				return EmptyEnumerable<String>.Instance;
 
 			var head = repository.Head;
 			if (head == null)
-				return new List<LibGit2Sharp.Commit>();
+				return EmptyEnumerable<String>.Instance;
 
 			var commits = head.Commits;
 			if (commits == null)
-				return new List<LibGit2Sharp.Commit>();
+				return EmptyEnumerable<String>.Instance;
 
-			return commits;
+			return commits
+				.NotNull()
+				.Select(commit => commit.Sha);
+		}
+
+		public static IImmutableDictionary<String, Tag> GetTagsFromRepository(LibGit2Sharp.IRepository repository)
+		{
+			Contract.Ensures(Contract.Result<IImmutableDictionary<String, Tag>>() != null);
+
+			if (repository == null)
+				return ImmutableDictionary<String, Tag>.Empty;
+			if (repository.Tags == null)
+				return ImmutableDictionary<String, Tag>.Empty;
+
+			return repository.Tags
+				.Where(tag => tag != null)
+				.Where(tag => tag.Name != null)
+				.Where(tag => tag.Target != null)
+				.Where(tag => tag.Target.Sha != null)
+				.Select(tag => new Tag(tag.Name, tag.Target.Sha))
+				.ToImmutableDictionary(tag => tag.Sha) ?? ImmutableDictionary<String, Tag>.Empty;
+		}
+
+		public static String GenerateFileContents(VersionConfiguration configuration, LibGit2Sharp.IRepository repository)
+		{
+			Contract.Requires(configuration != null);
+			Contract.Ensures(Contract.Result<String>() != null);
+
+			var commits = GetHeadCommitsFromRepository(repository);
+			var tags = GetTagsFromRepository(repository);
+			var versions = VersionFinder.GetVersions(configuration, commits, tags);
+			return VersionFileGenerator.GenerateFileContents(versions.Version.ToString(), versions.FileVersion.ToString(), versions.InfoVersion.ToString());
 		}
 	}
 }

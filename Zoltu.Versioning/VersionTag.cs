@@ -55,7 +55,7 @@ namespace Zoltu.Versioning
 			_suffix = suffix;
 		}
 
-		public static VersionTag TryCreateVersionTag(Tag tag)
+		public static VersionTag TryCreate(Tag tag)
 		{
 			try
 			{

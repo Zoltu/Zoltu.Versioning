@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Extensions;
 
@@ -26,7 +22,7 @@ namespace Zoltu.Versioning.Tests
 			var tag = new Tag(tagName, "");
 
 			// act
-			var versionTag = VersionTag.TryCreateVersionTag(tag);
+			var versionTag = VersionTag.TryCreate(tag);
 
 			// assert
 			Assert.Null(versionTag);
@@ -43,7 +39,7 @@ namespace Zoltu.Versioning.Tests
 			var tag = new Tag(tagName, "");
 
 			// act
-			var versionTag = VersionTag.TryCreateVersionTag(tag);
+			var versionTag = VersionTag.TryCreate(tag);
 
 			// assert
 			Assert.Equal(majorVersion, versionTag.MajorVersion);
