@@ -28,7 +28,8 @@ namespace Zoltu.Versioning
 				: null;
 			using (repository)
 			{
-				var fileContents = GitVersion.GenerateVersionFileContents(repository, OnlyMajorAndMinorInAssemblyVersion, OnlyMajorAndMinorInAssemblyFileVersion, OnlyMajorAndMinorInAssemblyInformationalVersion);
+				var configuration = new VersionConfiguration(!OnlyMajorAndMinorInAssemblyVersion, !OnlyMajorAndMinorInAssemblyFileVersion, !OnlyMajorAndMinorInAssemblyInformationalVersion);
+				var fileContents = GitVersion.GenerateFileContents(configuration, repository);
 				File.WriteAllText(OutputFilePath, fileContents);
 			}
 
