@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Immutable;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using Zoltu.Collections.Generic.NotNull;
@@ -29,14 +28,14 @@ namespace Zoltu.Versioning
 				.Select(commit => commit.Sha);
 		}
 
-		public static IImmutableDictionary<String, Tag> GetTagsFromRepository(LibGit2Sharp.IRepository repository)
+		public static ILookup<String, Tag> GetTagsFromRepository(LibGit2Sharp.IRepository repository)
 		{
-			Contract.Ensures(Contract.Result<IImmutableDictionary<String, Tag>>() != null);
+			Contract.Ensures(Contract.Result<ILookup<String, Tag>>() != null);
 
 			if (repository == null)
-				return ImmutableDictionary<String, Tag>.Empty;
+				return Enumerable.Empty<Tag>().ToLookup(tag => tag.Sha);
 			if (repository.Tags == null)
-				return ImmutableDictionary<String, Tag>.Empty;
+				return Enumerable.Empty<Tag>().ToLookup(tag => tag.Sha);
 
 			return repository.Tags
 				.Where(tag => tag != null)
@@ -44,7 +43,7 @@ namespace Zoltu.Versioning
 				.Where(tag => tag.Target != null)
 				.Where(tag => tag.Target.Sha != null)
 				.Select(tag => new Tag(tag.Name, tag.Target.Sha))
-				.ToImmutableDictionary(tag => tag.Sha) ?? ImmutableDictionary<String, Tag>.Empty;
+				.ToLookup(tag => tag.Sha);
 		}
 
 		public static String GenerateFileContents(VersionConfiguration configuration, LibGit2Sharp.IRepository repository)

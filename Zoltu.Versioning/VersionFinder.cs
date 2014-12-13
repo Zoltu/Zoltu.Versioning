@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Immutable;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using Zoltu.Collections.Generic.NotNull;
 
 namespace Zoltu.Versioning
 {
 	public static class VersionFinder
 	{
-		public static Versions GetVersions(VersionConfiguration configuration, INotNullEnumerable<String> commits, IImmutableDictionary<String, Tag> commitsToTags)
+		public static Versions GetVersions(VersionConfiguration configuration, INotNullEnumerable<String> commits, ILookup<String, Tag> commitsToTags)
 		{
 			Contract.Requires(configuration != null);
 			Contract.Requires(commits != null);
@@ -21,22 +21,30 @@ namespace Zoltu.Versioning
 
 			foreach (var commit in commits)
 			{
-				var tag = commitsToTags.GetValueOrDefault(commit);
-				if (tag != null)
+				var tags = commitsToTags[commit];
+				foreach (var tag in tags)
 				{
-					var versionTag = VersionTag.TryCreate(tag);
-					if (versionTag != null)
-					{
-						if (versionTag.Suffix == null)
-						{
-							releaseVersionTag = versionTag;
-							break;
-						}
+					if (tag == null)
+						continue;
 
+					var versionTag = VersionTag.TryCreate(tag);
+					if (versionTag == null)
+						continue;
+
+					if (versionTag.Suffix != null)
+					{
 						if (prereleaseVersionTag == null)
 							prereleaseVersionTag = versionTag;
 					}
+					else
+					{
+						releaseVersionTag = versionTag;
+						break;
+					}
 				}
+
+				if (releaseVersionTag != null)
+					break;
 
 				++commitsSinceReleaseVersionTag;
 				if (prereleaseVersionTag == null)
@@ -52,5 +60,6 @@ namespace Zoltu.Versioning
 
 			return new Versions(releaseVersion, releaseVersion, prereleaseVersion).ApplyConfiguration(configuration);
 		}
+
 	}
 }
