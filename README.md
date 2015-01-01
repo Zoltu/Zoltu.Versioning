@@ -65,8 +65,8 @@ When the first is set to `true` in the above example the output attributes will 
 ### NCrunch Integration
 
 NCrunch builds will start failing after adding this project to your solution due to being unable to find LibGit2Sharp libraries `System.IO.FileNotFoundException: Could not load file or assembly 'LibGit2Sharp, Version=0.18.1.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies. The system cannot find the file specified.`
-To work around this, add the following to your .ncrunchproject file:
+To work around this, add the following to your .ncrunchsolution file:
 
 ``` xml
-<AdditionalFilesToInclude>..\packages\Zoltu.Versioning.*\build\**.*</AdditionalFilesToInclude>
+<AdditionalFilesToInclude>packages\Zoltu.Versioning.*\build\**.*</AdditionalFilesToInclude>
 ```
