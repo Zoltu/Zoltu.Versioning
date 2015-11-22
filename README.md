@@ -38,25 +38,35 @@ tag `v1.3` | `1.3.0.0` | `1.3.0.0`
 
 Note: The build version never changes because in the .NET world it is ignored.
 
+### Leaving some versions out of the generated file
+
+You may want to only have `AssemblyVersion` auto-generated, or perhaps leave out the `AssemblyVersion`.  This can be done with each of the three version attributes by setting the relevant variables in the `.csproj` file.
+
+```xml
+<PropertyGroup>
+	<GitVersionIncludeAssemblyVersion>false</GitVersionIncludeAssemblyVersion>
+	<GitVersionIncludeAssemblyFileVersion>true</GitVersionIncludeAssemblyFileVersion>
+	<GitVersionIncludeAssemblyInformationalVersion>true</GitVersionIncludeAssemblyInformationalVersion>
+</PropertyGroup>
+```
+The above XML in your `.csproj` file will result in an assembly version file like this (note the missing `AssemblyVersion`):
+```cs
+[assembly: AssemblyFileVersion("3.5.10.0")]
+[assembly: AssemblyInformationalVersion("3.5.10.0")]
+```
+
 ### Skipping revision and build parts
 
 It is possible to instruct the versioning system to output only a version consiting of only major and minor. This can be done with each of the three version attributes independently by setting relevant variables in the .csproj file.
 
-```
-<GitVersionOnlyMajorAndMinorInAssemblyVersion />
-<GitVersionOnlyMajorAndMinorInAssemblyFileVersion />
-<GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion />
-```
-
-When the first is set to `true` in the above example the output attributes will be as shown below.
-
-``` xml
+```xml
 <PropertyGroup>
-    <GitVersionOnlyMajorAndMinorInAssemblyVersion>
-        true
-    </GitVersionOnlyMajorAndMinorInAssemblyVersion>
+	<GitVersionOnlyMajorAndMinorInAssemblyVersion>true</GitVersionOnlyMajorAndMinorInAssemblyVersion>
+	<GitVersionOnlyMajorAndMinorInAssemblyFileVersion>false</GitVersionOnlyMajorAndMinorInAssemblyFileVersion>
+	<GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion>false</GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion>
 </PropertyGroup>
 ```
+When the first is set to `true` as in the above example the output attributes will be as shown below.
 
 ``` c#
 [assembly: AssemblyVersion("3.5.0.0")]
