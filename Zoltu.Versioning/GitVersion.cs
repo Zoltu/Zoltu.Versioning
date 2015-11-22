@@ -53,8 +53,9 @@ namespace Zoltu.Versioning
 
 			var commits = GetHeadCommitsFromRepository(repository);
 			var tags = GetTagsFromRepository(repository);
-			var versions = VersionFinder.GetVersions(configuration, commits, tags);
-			return VersionFileGenerator.GenerateFileContents(versions.Version.ToString(), versions.FileVersion.ToString(), versions.InfoVersion.ToString());
+			var versions = VersionFinder.GetVersions(commits, tags);
+			var versionConfigurationApplicator = new VersionConfigurationApplicator(versions, configuration);
+			return VersionFileGenerator.GenerateFileContents(versionConfigurationApplicator.Version, versionConfigurationApplicator.FileVersion, versionConfigurationApplicator.InfoVersion);
 		}
 	}
 }

@@ -7,9 +7,8 @@ namespace Zoltu.Versioning
 {
 	public static class VersionFinder
 	{
-		public static Versions GetVersions(VersionConfiguration configuration, INotNullEnumerable<String> commits, ILookup<String, Tag> commitsToTags)
+		public static Versions GetVersions(INotNullEnumerable<String> commits, ILookup<String, Tag> commitsToTags)
 		{
-			Contract.Requires(configuration != null);
 			Contract.Requires(commits != null);
 			Contract.Requires(commitsToTags != null);
 			Contract.Ensures(Contract.Result<Versions>() != null);
@@ -58,7 +57,7 @@ namespace Zoltu.Versioning
 				? new Version(prereleaseVersionTag.MajorVersion, prereleaseVersionTag.MinorVersion, 0, 0, String.Format("{0}-{1}", prereleaseVersionTag.Suffix, commitsSincePrereleaseVersionTag.ToString("D3")))
 				: releaseVersion;
 
-			return new Versions(releaseVersion, releaseVersion, prereleaseVersion).ApplyConfiguration(configuration);
+			return new Versions(releaseVersion, releaseVersion, prereleaseVersion);
 		}
 
 	}

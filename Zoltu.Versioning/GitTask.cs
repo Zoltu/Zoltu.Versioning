@@ -11,10 +11,12 @@ namespace Zoltu.Versioning
 		[Required]
 		public String OutputFilePath { get; set; }
 
+		public Boolean IncludeAssemblyVersion { get; set; }
+		public Boolean IncludeAssemblyFileVersion { get; set; }
+		public Boolean IncludeAssemblyInformationalVersion { get; set; }
+
 		public Boolean OnlyMajorAndMinorInAssemblyVersion { get; set; }
-
 		public Boolean OnlyMajorAndMinorInAssemblyFileVersion { get; set; }
-
 		public Boolean OnlyMajorAndMinorInAssemblyInformationalVersion { get; set; }
 
 		public override Boolean Execute()
@@ -28,7 +30,7 @@ namespace Zoltu.Versioning
 				: null;
 			using (repository)
 			{
-				var configuration = new VersionConfiguration(!OnlyMajorAndMinorInAssemblyVersion, !OnlyMajorAndMinorInAssemblyFileVersion, !OnlyMajorAndMinorInAssemblyInformationalVersion);
+				var configuration = new VersionConfiguration(IncludeAssemblyVersion, IncludeAssemblyFileVersion, IncludeAssemblyInformationalVersion, !OnlyMajorAndMinorInAssemblyVersion, !OnlyMajorAndMinorInAssemblyFileVersion, !OnlyMajorAndMinorInAssemblyInformationalVersion);
 				var fileContents = GitVersion.GenerateFileContents(configuration, repository);
 				File.WriteAllText(OutputFilePath, fileContents);
 			}

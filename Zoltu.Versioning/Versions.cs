@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.Contracts;
 
 namespace Zoltu.Versioning
 {
@@ -31,30 +26,6 @@ namespace Zoltu.Versioning
 			Version = version;
 			FileVersion = fileVersion;
 			InfoVersion = infoVersion;
-		}
-	}
-
-	public static class VersionsExtensions
-	{
-		public static Versions ApplyConfiguration(this Versions versions, VersionConfiguration configuration)
-		{
-			Contract.Requires(versions != null);
-			Contract.Requires(configuration != null);
-			Contract.Ensures(Contract.Result<Versions>() != null);
-
-			var version = (configuration.IncludePatchAndBuildInVersion)
-				? versions.Version
-				: new Version(versions.Version.Major, versions.Version.Minor, 0, 0, versions.Version.Suffix);
-
-			var fileVersion = (configuration.IncludePatchAndBuildInFileVersion)
-				? versions.FileVersion
-				: new Version(versions.FileVersion.Major, versions.FileVersion.Minor, 0, 0, versions.FileVersion.Suffix);
-
-			var infoVersion = (configuration.IncludePatchAndBuildInInfoVersion)
-				? versions.InfoVersion
-				: new Version(versions.InfoVersion.Major, versions.InfoVersion.Minor, 0, 0, versions.InfoVersion.Suffix);
-
-			return new Versions(version, fileVersion, infoVersion);
 		}
 	}
 }

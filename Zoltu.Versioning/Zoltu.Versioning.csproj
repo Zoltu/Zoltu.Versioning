@@ -149,6 +149,7 @@
     <Compile Include="Tag.cs" />
     <Compile Include="Version.cs" />
     <Compile Include="VersionConfiguration.cs" />
+    <Compile Include="VersionConfigurationApplicator.cs" />
     <Compile Include="VersionFileGenerator.cs" />
     <Compile Include="VersionFinder.cs" />
     <Compile Include="Versions.cs" />

@@ -72,7 +72,7 @@
   <ItemGroup>
     <Compile Include="GitVersionTests.cs" />
     <Compile Include="VersionFinderTests.cs" />
-    <Compile Include="VersionsTests.cs" />
+    <Compile Include="VersionConfigurationApplicatorTests.cs" />
     <Compile Include="VersionFileGeneratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Version.cs" />

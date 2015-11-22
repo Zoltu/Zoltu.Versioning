@@ -3,6 +3,9 @@
 
 	<Target Name="GenerateVersionFileFromGit" BeforeTargets="BeforeBuild">
 		<PropertyGroup>
+			<GitVersionIncludeAssemblyVersion Condition=" '$(GitVersionIncludeAssemblyVersion)' == '' ">true</GitVersionIncludeAssemblyVersion>
+			<GitVersionIncludeAssemblyFileVersion Condition=" '$(GitVersionIncludeAssemblyFileVersion)' == '' ">true</GitVersionIncludeAssemblyFileVersion>
+			<GitVersionIncludeAssemblyInformationalVersion Condition=" '$(GitVersionIncludeAssemblyInformationalVersion)' == '' ">true</GitVersionIncludeAssemblyInformationalVersion>
 			<GitVersionOnlyMajorAndMinorInAssemblyVersion Condition=" '$(GitVersionOnlyMajorAndMinorInAssemblyVersion)' == '' ">false</GitVersionOnlyMajorAndMinorInAssemblyVersion>
 			<GitVersionOnlyMajorAndMinorInAssemblyFileVersion Condition=" '$(GitVersionOnlyMajorAndMinorInAssemblyFileVersion)' == '' ">false</GitVersionOnlyMajorAndMinorInAssemblyFileVersion>
 			<GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion Condition=" '$(GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion)' == '' ">false</GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion>
@@ -10,6 +13,9 @@
 		
 		<Zoltu.Versioning.GitTask
 			OutputFilePath="$(ProjectDir)Properties\VersionAssemblyInfo.cs"
+			IncludeAssemblyVersion="$(GitVersionIncludeAssemblyVersion)"
+			IncludeAssemblyFileVersion="$(GitVersionIncludeAssemblyFileVersion)"
+			IncludeAssemblyInformationalVersion="$(GitVersionIncludeAssemblyInformationalVersion)"
 			OnlyMajorAndMinorInAssemblyVersion="$(GitVersionOnlyMajorAndMinorInAssemblyVersion)"
 			OnlyMajorAndMinorInAssemblyFileVersion="$(GitVersionOnlyMajorAndMinorInAssemblyFileVersion)"
 			OnlyMajorAndMinorInAssemblyInformationalVersion="$(GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion)"/>

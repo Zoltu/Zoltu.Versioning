@@ -112,7 +112,7 @@ namespace Zoltu.Versioning.Tests
 		{
 			// arrange
 			var repository = Mock.Create<LibGit2Sharp.IRepository>();
-			var configuration = new VersionConfiguration(true, true, true);
+			var configuration = new VersionConfiguration(true, true, true, true, true, true);
 			var expectedContents =
 @"// This is a generated file.  Do not commit it to version control and do not modify it.
 using System.Reflection;
@@ -135,7 +135,7 @@ using System.Reflection;
 			// arrange
 			var repository = Mock.Create<LibGit2Sharp.IRepository>();
 			Mock.Arrange(() => repository.Head.Commits).Returns(MockCommitLog(new[] { "third", "second", "first" }));
-			var configuration = new VersionConfiguration(true, true, true);
+			var configuration = new VersionConfiguration(true, true, true, true, true, true);
 			var expectedContents =
 @"// This is a generated file.  Do not commit it to version control and do not modify it.
 using System.Reflection;
@@ -159,7 +159,7 @@ using System.Reflection;
 			var repository = Mock.Create<LibGit2Sharp.IRepository>();
 			Mock.Arrange(() => repository.Head.Commits).Returns(MockCommitLog(new[] { "third", "second", "first", "zero" }));
 			Mock.Arrange(() => repository.Tags).Returns(MockTags(new Dictionary<String, String>{ {"zero", "v1.2"} }));
-			var configuration = new VersionConfiguration(true, true, true);
+			var configuration = new VersionConfiguration(true, true, true, true, true, true);
 			var expectedContents =
 @"// This is a generated file.  Do not commit it to version control and do not modify it.
 using System.Reflection;
@@ -183,7 +183,7 @@ using System.Reflection;
 			var repository = Mock.Create<LibGit2Sharp.IRepository>();
 			Mock.Arrange(() => repository.Head.Commits).Returns(MockCommitLog(new[] { "third", "second", "first", "zero" }));
 			Mock.Arrange(() => repository.Tags).Returns(MockTags(new Dictionary<String, String> { { "doesnotexist", "v1.2" } }));
-			var configuration = new VersionConfiguration(true, true, true);
+			var configuration = new VersionConfiguration(true, true, true, true, true, true);
 			var expectedContents =
 @"// This is a generated file.  Do not commit it to version control and do not modify it.
 using System.Reflection;
@@ -207,7 +207,7 @@ using System.Reflection;
 			var repository = Mock.Create<LibGit2Sharp.IRepository>();
 			Mock.Arrange(() => repository.Head.Commits).Returns(MockCommitLog(new[] { "third", "second", "first", "zero" }));
 			Mock.Arrange(() => repository.Tags).Returns(MockTags(new Dictionary<String, String> { { "zero", "1.2" } }));
-			var configuration = new VersionConfiguration(true, true, true);
+			var configuration = new VersionConfiguration(true, true, true, true, true, true);
 			var expectedContents =
 @"// This is a generated file.  Do not commit it to version control and do not modify it.
 using System.Reflection;
@@ -231,7 +231,7 @@ using System.Reflection;
 			var repository = Mock.Create<LibGit2Sharp.IRepository>();
 			Mock.Arrange(() => repository.Head.Commits).Returns(MockCommitLog(new[] { "third", "second", "first", "zero" }));
 			Mock.Arrange(() => repository.Tags).Returns(MockTags(new Dictionary<String, String> { { "zero", "v1.2" }, { "second", "v1.3"} }));
-			var configuration = new VersionConfiguration(true, true, true);
+			var configuration = new VersionConfiguration(true, true, true, true, true, true);
 			var expectedContents =
 @"// This is a generated file.  Do not commit it to version control and do not modify it.
 using System.Reflection;
@@ -255,7 +255,7 @@ using System.Reflection;
 			var repository = Mock.Create<LibGit2Sharp.IRepository>();
 			Mock.Arrange(() => repository.Head.Commits).Returns(MockCommitLog(new[] { "third", "second", "first", "zero" }));
 			Mock.Arrange(() => repository.Tags).Returns(MockTags(new Dictionary<String, String> { { "zero", "v1.2" }, { "second", "v1.3-RC" } }));
-			var configuration = new VersionConfiguration(true, true, true);
+			var configuration = new VersionConfiguration(true, true, true, true, true, true);
 			var expectedContents =
 @"// This is a generated file.  Do not commit it to version control and do not modify it.
 using System.Reflection;
