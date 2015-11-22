@@ -19,9 +19,9 @@ namespace Zoltu.Versioning
 			return new StringBuilder()
 				.AppendLine(@"// This is a generated file.  Do not commit it to version control and do not modify it.")
 				.AppendLine(@"using System.Reflection;")
-				.AppendFormat(@"[assembly: AssemblyVersion(""{0}"")]{1}", version, Environment.NewLine)
-				.AppendFormat(@"[assembly: AssemblyFileVersion(""{0}"")]{1}", fileVersion, Environment.NewLine)
-				.AppendFormat(@"[assembly: AssemblyInformationalVersion(""{0}"")]{1}", infoVersion, Environment.NewLine)
+				.AppendLine($"[assembly: AssemblyVersion(\"{version}\")]")
+				.AppendLine($"[assembly: AssemblyFileVersion(\"{fileVersion}\")]")
+				.AppendLine($"[assembly: AssemblyInformationalVersion(\"{infoVersion}\")]")
 				.ToString();
 		}
 	}
