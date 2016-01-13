@@ -5,6 +5,7 @@
 		<version>$version$</version>
 		<authors>$author$</authors>
 		<description>$description$</description>
+		<https://blob.zoltu.com/images/zoltu-icon-64x64.png</iconUrl>
 		<language>en-US</language>
 		<projectUrl>https://github.com/Zoltu/Zoltu.Versioning</projectUrl>
 		<licenseUrl>https://github.com/Zoltu/Zoltu.Versioning/blob/master/LICENSE</licenseUrl>
