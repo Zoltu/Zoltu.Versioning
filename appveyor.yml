@@ -2,7 +2,7 @@ os: Visual Studio 2015
 
 branches:
   only:
-    - master
+  - master
 
 skip_tags: true
 
@@ -12,25 +12,27 @@ assembly_info:
   patch: false
 
 platform:
-  - AnyCPU
+- AnyCPU
 
 configuration:
-  - Release
+- Release
+
+cache:
+- packages -> **\packages.config
 
 before_build:
-  - cmd: nuget restore
+- cmd: nuget restore
 
 build:
   project: Zoltu.Versioning.sln
   verbosity: minimal
 
 artifacts:
-  - path: Zoltu.Versioning/bin/**/*.nupkg
-  - path: Zoltu.Versioning/bin/**/*.dll
-  - path: Zoltu.Versioning/bin/**/*.pdb
+- path: Zoltu.Versioning/bin/**/*.nupkg
+- path: Zoltu.Versioning/bin/**/*.dll
+- path: Zoltu.Versioning/bin/**/*.pdb
 
 deploy:
   provider: NuGet
   api_key:
     secure: X6YnwwH05dy0122NypnAz4w1ti39JQ49I8bQqDsLHzUwAp1rhvm6yvPo03EpwD8e
-
