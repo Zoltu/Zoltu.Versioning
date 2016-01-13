@@ -178,8 +178,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NuGet.for.MSBuild.2.1.0\build\NuGet.for.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.for.MSBuild.2.1.0\build\NuGet.for.MSBuild.targets'))" />
     <Error Condition="!Exists('..\packages\LibGit2Sharp.0.21.0.176\build\net40\LibGit2Sharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LibGit2Sharp.0.21.0.176\build\net40\LibGit2Sharp.props'))" />
-    <Error Condition="!Exists('..\packages\Zoltu.Versioning.1.2.18.0\build\Zoltu.Versioning.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Zoltu.Versioning.1.2.18.0\build\Zoltu.Versioning.targets'))" />
+    <Error Condition="!Exists('..\packages\Zoltu.Versioning.1.2.24.0\build\Zoltu.Versioning.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Zoltu.Versioning.1.2.24.0\build\Zoltu.Versioning.targets'))" />
   </Target>
   <Import Project="..\packages\NuGet.for.MSBuild.2.1.0\build\NuGet.for.MSBuild.targets" Condition="Exists('..\packages\NuGet.for.MSBuild.2.1.0\build\NuGet.for.MSBuild.targets')" />
-  <Import Project="..\packages\Zoltu.Versioning.1.2.18.0\build\Zoltu.Versioning.targets" Condition="Exists('..\packages\Zoltu.Versioning.1.2.18.0\build\Zoltu.Versioning.targets')" />
+  <Import Project="..\packages\Zoltu.Versioning.1.2.24.0\build\Zoltu.Versioning.targets" Condition="Exists('..\packages\Zoltu.Versioning.1.2.24.0\build\Zoltu.Versioning.targets')" />
 </Project>
