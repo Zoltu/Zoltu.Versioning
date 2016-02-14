@@ -64,8 +64,8 @@
       <HintPath>..\packages\Zoltu.Collections.Generic.NotNull.1.0.16.0\lib\net40\Zoltu.Collections.Generic.NotNull.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Zoltu.Linq.NotNull, Version=1.0.37.0, Culture=neutral, PublicKeyToken=3e1451fa1a796a30, processorArchitecture=MSIL">
-      <HintPath>..\packages\Zoltu.Linq.NotNull.1.0.37.0\lib\net45\Zoltu.Linq.NotNull.dll</HintPath>
+    <Reference Include="Zoltu.Linq.NotNull, Version=1.0.38.0, Culture=neutral, PublicKeyToken=3e1451fa1a796a30, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zoltu.Linq.NotNull.1.0.38.0\lib\net45\Zoltu.Linq.NotNull.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
