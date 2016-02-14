@@ -10,7 +10,7 @@
 			<GitVersionOnlyMajorAndMinorInAssemblyFileVersion Condition=" '$(GitVersionOnlyMajorAndMinorInAssemblyFileVersion)' == '' ">false</GitVersionOnlyMajorAndMinorInAssemblyFileVersion>
 			<GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion Condition=" '$(GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion)' == '' ">false</GitVersionOnlyMajorAndMinorInAssemblyInformationalVersion>
 		</PropertyGroup>
-		
+
 		<Zoltu.Versioning.GitTask
 			OutputFilePath="$(ProjectDir)Properties\VersionAssemblyInfo.cs"
 			IncludeAssemblyVersion="$(GitVersionIncludeAssemblyVersion)"
