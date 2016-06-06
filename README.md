@@ -12,6 +12,7 @@ NuGet package for automatically versioning a project with git.
 
  * Install the NuGet package (https://www.nuget.org/packages/Zoltu.Versioning/).
  * Remove `AssemblyVersion`, `AssemblyFileVersion` and `AssemblyInformationalVersion` attributes from your AssemblyInfo.cs (if you have them).
+ * Add `VersionAssemblyInfo.cs` to your version control system's ignore mechanism (e.g., `.gitignore`).
  * When you want to increase the major or minor version numbers, tag the commit that should bump the version with v#.#
   * Example Tag: v3.5
   * Note: If you are using a build server that automatically builds on commit, it is recommended that you tag *before* pushing to the remote master.  This is because your build server will kick off without that tag and therefore the build that is generated will not have the newly tagged version.
