@@ -22,6 +22,6 @@
 	</Target>
 
 	<ItemGroup>
-		<Compile Include="Properties\VersionAssemblyInfo.cs" />
+    <Compile Include="Properties\VersionAssemblyInfo.cs" Condition="$(TargetFramework) != 'net5.0'" />
 	</ItemGroup>
 </Project>

@@ -7,7 +7,10 @@
 #endif
 
 [assembly: AssemblyDescription(
-@"A NuGet package for automatically versioning builds via the Git repository they are sitting in.
+@"
+Modified to support .Net 5.0 projects.
+
+A NuGet package for automatically versioning builds via the Git repository they are sitting in.
 
 Usage: Tag your releases with ""v#.#"".
 
